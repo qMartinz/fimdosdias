@@ -21,7 +21,7 @@ export default function UpdateStat({ character, stat }: { character: any; stat: 
     const decrease = () => {add(-1)};
 
     return (
-        <div>
+        <div className='changeStatButtons'>
             <button onClick={increase}>+</button>
             <button onClick={decrease}>-</button>
         </div>

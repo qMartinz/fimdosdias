@@ -12,8 +12,8 @@ async function getCharacters() {
 }
 
 async function getScene() {
-    const result = await pb.collection('scenes').getOne('000000000000000');
-    return result;
+  const result = await pb.collection('scenes').getOne('000000000000000');
+  return result;
 }
 
 export default async function Home() {
@@ -24,7 +24,7 @@ export default async function Home() {
   return (
     <div>
       <ChangeScene />
-      <div>
+      <div className='characters'>
         {characters?.map(character => {
           return <Character key={character.id} character={character} />;
         })}
@@ -37,20 +37,22 @@ function Character({ character }: any) {
   const { id, name, visibility, success, failure } = character || {};
 
   return (
-    <div>
-      <div>
-        <h2>{name}</h2>
-        <div>
+    <div className='character'>
+      <h2>{name}</h2>
+      <div className='info'>
+        <div className='furtividade'>
           <p>Visibilidade: {visibility}</p>
           <UpdateStat character={character} stat='visibility' />
         </div>
-        <div>
-          <p>Successos: {success}</p>
-          <UpdateStat character={character} stat='success' />
-        </div>
-        <div>
-          <p>Falhas: {failure}</p>
-          <UpdateStat character={character} stat='failure' />
+        <div className='testeestendido'>
+          <div>
+            <p>Successos: {success}</p>
+            <UpdateStat character={character} stat='success' />
+          </div>
+          <div>
+            <p>Falhas: {failure}</p>
+            <UpdateStat character={character} stat='failure' />
+          </div>
         </div>
       </div>
     </div>
