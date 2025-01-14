@@ -14,7 +14,6 @@ export default async function OBS() {
     return (
         <div>
             <RealTimeViewer characters={characters} />
-            
         </div>
     )
 }

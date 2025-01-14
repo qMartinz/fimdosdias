@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PocketBase from 'pocketbase';
 import UpdateStat from "./UpdateStat";
 
