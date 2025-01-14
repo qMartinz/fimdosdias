@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Handodle';
+    src: url(/Handodle.ttf);
+}
+
 body, html {
     width: 100%;
     height: 100vh;
@@ -19,13 +24,14 @@ body > div {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
 }
 
 h2 {
     margin: 0;
     margin-bottom: 10px;
     text-align: center;
+    font-family: 'Handodle';
 }
 
 p {
@@ -35,8 +41,8 @@ p {
 
 .characters {
     display: grid;
-    grid-template-columns: max-content max-content max-content;
-    gap: 50px;
+    grid-template-columns: repeat(3, 350px);
+    gap: 40px;
     justify-content: center;
     align-items: center;
 }
@@ -54,16 +60,82 @@ p {
     gap: 10px;
 }
 
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .testeestendido {
     display: flex;
-    gap: 20px;
+    justify-content: space-evenly;
+    gap: 40px;
 }
 
 .testeestendido > div {
-    width: 90px;
+    width: 130px;
+}
+
+button {
+    background-color: white;
+    border: none;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+}
+
+button:hover {
+    box-shadow: 0 0 10px rgba(255, 177, 33, 0.8);
 }
 
 .changeStatButtons {
     display: flex;
     justify-content: space-evenly;
+    gap: 7px;
+}
+
+.mudar {
+    width: 20px;
+    height: 20px;
+}
+
+.limpar {
+    height: 20px;
+}
+
+.changeSceneButtons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.changeSceneButtons > button {
+    width: 150px;
+    font-size: 1.1rem;
+}
+
+.limparTodos {
+    width: 150px;
+    font-size: 1.1rem;
+}
+
+.updateSceneButtons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.scene {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sceneInfo {
+    font-size: 1.2rem;
 }

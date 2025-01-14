@@ -1,8 +1,10 @@
 import PocketBase from 'pocketbase';
 import UpdateStat from "./UpdateStat";
-import ChangeScene from './ChangeScene';
+import ChangeSceneType from './ChangeSceneType';
 import Link from 'next/link';
 import './style.css';
+import ClearStats from './ClearStats';
+import UpdateSceneTypes from './UpdateScene';
 
 const pb = new PocketBase('http://127.0.0.1:8090');
 
@@ -19,15 +21,22 @@ async function getScene() {
 export default async function Home() {
   const characters = await getCharacters();
   const scene = await getScene();
-  console.log(scene);
 
   return (
     <div>
-      <ChangeScene />
+      <ChangeSceneType />
+      <ClearStats characters={characters} />
       <div className='characters'>
         {characters?.map(character => {
           return <Character key={character.id} character={character} />;
         })}
+      </div>
+      <div className='scene'>
+        <div className='sceneInfo'>
+          <p>Dia: {scene.day}</p>
+          <p>Horário: {scene.time}</p>
+        </div>
+        <UpdateSceneTypes scene={scene} />
       </div>
     </div>
   );
@@ -40,16 +49,16 @@ function Character({ character }: any) {
     <div className='character'>
       <h2>{name}</h2>
       <div className='info'>
-        <div className='furtividade'>
+        <div className='furtividade stat'>
           <p>Visibilidade: {visibility}</p>
           <UpdateStat character={character} stat='visibility' />
         </div>
         <div className='testeestendido'>
-          <div>
+          <div className='stat'>
             <p>Successos: {success}</p>
             <UpdateStat character={character} stat='success' />
           </div>
-          <div>
+          <div className='stat'>
             <p>Falhas: {failure}</p>
             <UpdateStat character={character} stat='failure' />
           </div>
@@ -57,4 +66,15 @@ function Character({ character }: any) {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps({ params }) {
+  const req = await fetch(`http://localhost:3000/${params.id}.json`);
+  const data = await req.json();
+
+  return {
+    props: {
+      
+    }
+  }
 }

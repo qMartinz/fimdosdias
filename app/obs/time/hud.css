@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Handodle';
+    src: url(/Handodle.ttf);
+}
+
+body, html {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    overflow: auto;
+}
+
+body {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.hud {
+    background-image: url('/huddireita.png');
+    width: 522px;
+    height: 295px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    display: flex;
+}
+
+p {
+    margin: 0;
+    text-align: left;
+    color: white;
+    font-size: 3.7rem;
+    font-family: 'Handodle';
+    width: 100%;
+}
+
+.number {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.info {
+    padding-top: 40px;
+    padding-left: 80px;
+    display: grid;
+    grid-template-columns: 88px max-content;
+    align-items: center;
+    justify-items: center;
+    column-gap: 25px;
+}
