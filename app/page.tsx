@@ -1,5 +1,8 @@
 import PocketBase from 'pocketbase';
 import UpdateStat from "./UpdateStat";
+import ChangeScene from './ChangeScene';
+import Link from 'next/link';
+import './style.css';
 
 const pb = new PocketBase('http://127.0.0.1:8090');
 
@@ -8,11 +11,19 @@ async function getCharacters() {
   return result;
 }
 
+async function getScene() {
+    const result = await pb.collection('scenes').getOne('000000000000000');
+    return result;
+}
+
 export default async function Home() {
   const characters = await getCharacters();
+  const scene = await getScene();
+  console.log(scene);
 
   return (
     <div>
+      <ChangeScene />
       <div>
         {characters?.map(character => {
           return <Character key={character.id} character={character} />;
