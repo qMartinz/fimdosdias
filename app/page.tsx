@@ -1,21 +1,19 @@
-import PocketBase from 'pocketbase';
 import UpdateStat from "./UpdateStat";
 import ChangeSceneType from './ChangeSceneType';
-import Link from 'next/link';
 import './style.css';
 import ClearStats from './ClearStats';
 import UpdateSceneTypes from './UpdateScene';
 
-const pb = new PocketBase('http://127.0.0.1:8090');
-
 async function getCharacters() {
-  const result = await pb.collection('characters').getFullList();
-  return result;
+  const res = await fetch('http://127.0.0.1:8090/api/collections/characters/records?page=1&perPage=6', { cache: 'no-store' });
+  const data = await res.json();
+  return data?.items as any[];
 }
 
 async function getScene() {
-  const result = await pb.collection('scenes').getOne('000000000000000');
-  return result;
+  const res = await fetch(`http://127.0.0.1:8090/api/collections/scenes/records/000000000000000`, { cache: 'no-store' });
+  const data = await res.json();
+  return data;
 }
 
 export default async function Home() {

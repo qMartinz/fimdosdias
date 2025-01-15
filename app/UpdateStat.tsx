@@ -1,18 +1,20 @@
 'use client';
-import PocketBase from 'pocketbase';
 import { useRouter } from 'next/navigation';
-
-const pb = new PocketBase('http://127.0.0.1:8090');
 
 export default function UpdateStat({ character, stat }: { character: any; stat: string }) {
     const router = useRouter();
 
     const add = async (amount: number) => {
-        const data = {
-            [stat]: character[stat] + amount,
-        };
-
-        const record = await pb.collection('characters').update(character.id, data);
+        
+        const res = await fetch(`http://127.0.0.1:8090/api/collections/characters/records/${character.id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                [stat]: character[stat] + amount
+            })
+        });
 
         router.refresh();
     };
@@ -25,7 +27,13 @@ export default function UpdateStat({ character, stat }: { character: any; stat: 
             [stat]: 0,
         };
 
-        const record = await pb.collection('characters').update(character.id, data);
+        const res = await fetch(`http://127.0.0.1:8090/api/collections/characters/records/${character.id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
 
         router.refresh();
     };

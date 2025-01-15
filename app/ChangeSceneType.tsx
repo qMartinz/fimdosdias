@@ -1,8 +1,5 @@
 'use client';
-import PocketBase from 'pocketbase';
 import { useRouter } from 'next/navigation';
-
-const pb = new PocketBase('http://127.0.0.1:8090');
 
 export default function ChangeSceneType() {
     const router = useRouter();
@@ -12,7 +9,13 @@ export default function ChangeSceneType() {
             'type': type,
         };
 
-        const record = await pb.collection('scenes').update('000000000000000', data);
+        const res = await fetch(`http://127.0.0.1:8090/api/collections/scenes/records/000000000000000`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
 
         router.refresh();
     };
