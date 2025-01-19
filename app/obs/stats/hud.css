@@ -25,14 +25,33 @@ body {
     align-items: flex-start;
     justify-content: flex-start;
     display: flex;
+    flex-direction: column;
+}
+
+.total {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.total p {
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-size: 2.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .characters {
     display: flex;
     flex-direction: column;
     gap: 13px;
-    padding-left: 50px;
+    padding-left: 70px;
     padding-top: 20px;
+    width: 195px;
 }
 
 .info {
@@ -45,19 +64,23 @@ body {
     justify-content: space-evenly;
 }
 
+.total .testes {
+    gap: 30px;
+}
+
 h2 {
     margin: 0;
     text-align: center;
     color: white;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-family: 'Handodle';
 }
 
-p {
+.info p {
     margin: 0;
     text-align: center;
     color: white;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     display: flex;
     justify-content: center;
     align-items: center;

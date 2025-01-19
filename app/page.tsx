@@ -3,6 +3,7 @@ import ChangeSceneType from './ChangeSceneType';
 import './style.css';
 import ClearStats from './ClearStats';
 import UpdateSceneTypes from './UpdateScene';
+import UpdateVisible from "./UpdateVisible";
 
 async function getCharacters() {
   const res = await fetch('http://127.0.0.1:8090/api/collections/characters/records?page=1&perPage=6', { cache: 'no-store' });
@@ -41,12 +42,16 @@ export default async function Home() {
 }
 
 function Character({ character }: any) {
-  const { id, name, visibility, success, failure } = character || {};
+  const { id, name, visible, visibility, success, failure } = character || {};
 
   return (
     <div className='character'>
       <h2>{name}</h2>
       <div className='info'>
+        <div className="visiblestat">
+          <p>{visible ? 'Visível' : 'Ocultado'}</p>
+          <UpdateVisible character={character} />
+        </div>
         <div className='furtividade stat'>
           <p>Visibilidade: {visibility}</p>
           <UpdateStat character={character} stat='visibility' />
